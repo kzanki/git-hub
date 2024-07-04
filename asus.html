@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فروشگاه asus bshop</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<style>
+  body {
+    font-family: 'Tahoma', sans-serif;
+    background-color: #007bff; 
+  }
+  .menu {
+    background-color: #ffffff; 
+    padding: 10px;
+    text-align: center;
+  }
+  .menu h1 {
+    color: #312d15; 
+    animation: pulse 2s infinite;
+  }
+  .product {
+    background-color: #f8f9fa; 
+    margin: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    animation: fadeInUp 1s;
+  }
+  .add-to-cart {
+    background-color: #28a745; 
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: jello 0.9s;
+  }
+  .cart-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    animation: bounceIn 1s;
+    width:5%;
+  }
+  .menu a {
+    color: #007bff;
+    text-decoration: none;
+    margin: 0 10px;
+    animation: fadeInLeft 1s;
+  }
+
+</style>
+</head>
+<body>
+
+    <div class="menu">
+        <a href="S.html" class="animate__animated animate__fadeInLeft">صفحه اصلی</a>
+        <h1 class="animate__animated animate__pulse">asus bshop</h1>
+      </div>
+      
+
+<div class="product animate__animated animate__fadeInUp">
+  <h2>محصول ۱</h2>
+  <img src="path-to-image.jpg" alt="عکس محصول ۱">
+  <p>قیمت: ۱۰۰,۰۰۰ تومان</p>
+  <button class="add-to-cart animate__animated animate__jello" onclick="addToCartAlert()">افزودن به سبد خرید</button>
+</div>
+
+
+
+<script>
+
+function addToCartAlert() {
+  alert('کالا به سبد خرید اضافه شد');
+}
+
+
+function getCartCount() {
+  
+  return localStorage.getItem('cartCount') || 0;
+}
+
+function addToCart() {
+  
+  let currentCount = parseInt(getCartCount(), 10);
+  localStorage.setItem('cartCount', currentCount + 1);
+}
+
+function updateCartIcon() {
+  const cartIconElement = document.querySelector('.cart-icon');
+  cartIconElement.setAttribute('data-count', getCartCount());
+}
+
+document.addEventListener('DOMContentLoaded', updateCartIcon);
+
+</script>
+
+<img class="cart-icon animate__animated animate__bounceIn" src="cart-icon.jpg" alt="سبد خرید">
+
+</body>
+</html>

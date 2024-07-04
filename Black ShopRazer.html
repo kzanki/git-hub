@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black ShopRazer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .menu {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .menu a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .menu a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .shop-name {
+            animation: fadeIn 2s;
+            text-align: center;
+            color: #333;
+        }
+
+        .product {
+            margin: 15px;
+            float: left;
+            width: 30%;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-5px);
+        }
+
+        .product img {
+            width: 100%;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .add-to-cart {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #45a049;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+        .shop-name{
+            color:greenyellow;
+        }
+        body{
+            background-image:url('R.jpg');
+            background-repeat:no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="menu">
+        <a href="#home">خانه</a>
+        <a href="#news">اخبار</a>
+        <a href="#contact">تماس</a>
+        <a href="#about">درباره</a>
+    </div>
+
+    <h1 class="shop-name">Black ShopRazer</h1>
+
+    <div class="product">
+        <img src="Black ShopRazer.jpg" alt="محصول ۱">
+        <h2>محصول ۱</h2>
+        <p>قیمت: ۱۰۰۰۰ تومان</p>
+        <button class="add-to-cart">افزودن به سبد خرید</button>
+    </div>
+
+    <div class="product">
+        <img src="Black ShopRazer2.jpg" alt="محصول ۲">
+        <h2>محصول ۲</h2>
+        <p>قیمت: ۲۰۰۰۰ تومان</p>
+        <button class="add-to-cart">افزودن به سبد خرید</button>
+    </div>
+
+    <div class="product">
+        <img src="Black ShopRazer3.jpg" alt="محصول ۳">
+        <h2>محصول ۳</h2>
+        <p>قیمت: ۳۰۰۰۰ تومان</p>
+        <button class="add-to-cart">افزودن به سبد خرید</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const menuItems = document.querySelectorAll('.menu a');
+            menuItems.forEach((item, index) => {
+                item.style.animation = `fadeIn 0.5s ease forwards ${index / 7 + 0.5}s`;
+            });
+
+            const shopName = document.querySelector('.shop-name');
+            shopName.style.animation = 'fadeIn 1s ease';
+
+            const products = document.querySelectorAll('.product');
+            products.forEach((product, index) => {
+                product.style.animation = `fadeIn 1s ease forwards ${index / 7 + 1}s`;
+            });
+
+            
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    alert('کالا به سبد خرید اضافه شد!');
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

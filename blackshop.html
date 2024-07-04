@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLACK SHOP</title>
+  <style>
+    /* استایل صفحه */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* استایل منو */
+    .menu {
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .menu-icon {
+      cursor: pointer;
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .logo a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+    }
+
+    .search input[type="text"] {
+      padding: 6px;
+      font-size: 14px;
+      border: none;
+    }
+
+    /* استایل سبد خرید */
+    .cart-icon {
+      background-image: url('shopping-bag-32.png');
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    /* استایل فرم ورود */
+    .login-form {
+      display: none;
+      width: 300px;
+      padding: 20px;
+      background-color: #fff;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-form h2 {
+      text-align: center;
+    }
+
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    .login-form button {
+      width: 100%;
+      padding: 10px;
+      background-color: #111;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* استایل بخش محصولات */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .product {
+      width: 200px;
+      padding: 10px;
+      background-color: #fff;
+      margin: 10px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .product img {
+      width: 100%;
+      height: auto;
+    }
+
+    .product h3 {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .product p {
+      font-size: 14px;
+      color: #888;
+    }
+
+    .product button {
+      padding: 6px 12px;
+      background-color: #111;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* استایل منو */
+    .menu {
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+
+    .menu-icon {
+      cursor: pointer;
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .logo a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+    }
+
+    .search input[type="text"] {
+      padding: 6px;
+      font-size: 14px;
+      border: none;
+    }
+
+    /* استایل سبد خرید */
+    .cart-icon {
+      background-image: url('shopping-bag-32.png');
+      width: 32px;
+      height: 32px;
+      display: inline-block;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    /* استایل منو کشوی */
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 16px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: #f1f1f1;
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
+    @keyframes slideIn {
+      from {
+        width: 0;
+      }
+      to {
+        width: 250px;
+      }
+    }
+
+    @keyframes slideOut {
+      from {
+        width: 250px;
+      }
+      to {
+        width: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu">
+    <span class="menu-icon" onclick="toggleNav()">☰</span>
+    <div class="logo">
+      <a href="#">BLACK SHOP</a>
+    </div>
+    <div class="search">
+      <input type="text" placeholder="جستجو...">
+      <div class="cart-icon" onclick="showCart()"></div>
+    </div>
+  </div>
+
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()">×</a>
+    <a href="#">APPLE</a>
+    <a href="#">SAMSUNG</a>
+    <a href="#">PLAYSTATION</a>
+    <a href="#">XBOX</a>
+    <a href="#">ASUS</a>
+  </div>
+
+
+  <div class="login-form" id="loginForm">
+    <h2>وردمه</h2>
+    <input type="text" placeholder="نام کاربری">
+    <input type="password" placeholder="رمز عبور">
+    <button onclick="login()">ورود</button>
+  </div>
+
+  <div class="products">
+    <div class="product">
+      <img src="iphone1.jpg" alt="محصول 1">
+      <h3>محصول 1</h3>
+      <p>قیمت: ۱۰۰,۰۰۰ تومان</p>
+      <button onclick="addToCart('محصول 1')">افزودن به سبد خرید</button>
+    </div>
+    <div class="product">
+      <img src="MacBook Air.webp" alt="محصول 2">
+      <h3>محصول 2</h3>
+      <p>قیمت: ۲۰۰,۰۰۰ تومان</p>
+      <button onclick="addToCart('محصول 2')">افزودن به سبد خرید</button>
+    </div>
+    <div class="product">
+      <img src="Apple-iPhone-15-Pro.jpg" alt="محصول 3">
+      <h3>محصول 3</h3>
+      <p>قیمت: ۳۰۰,۰۰۰ تومان</p>
+      <button onclick="addToCart('محصول 3')">افزودن به سبد خرید</button>
+    </div>
+  </div>
+
+  <div id="cart" class="cart"></div>
+
+  <script>
+    var cartItems = [];
+
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "250px";
+    }
+function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+    }
+
+    function showCart() {
+      var cartContent = "<h2>سبد خرید</h2>";
+      if (cartItems.length === 0) {
+        cartContent += "<p>سبد خرید خالی است.</p>";
+      } else {
+        cartContent += "<ul>";
+        for (var i = 0; i < cartItems.length; i++) {
+          cartContent += "<li>" + cartItems[i] + "</li>";
+        }
+        cartContent += "</ul>";
+      }
+      document.getElementById("cart").innerHTML = cartContent;
+    }
+
+    function addToCart(product) {
+      cartItems.push(product);
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      var cartIcon = document.querySelector(".cart-icon");
+      if (cartItems.length > 0) {
+        cartIcon.style.backgroundImage = "url('shopping-bag-32-filled.png')";
+      } else {
+        cartIcon.style.backgroundImage = "url('shopping-bag-32.png')";
+      }
+    }
+
+    function login() {
+      var loginForm = document.getElementById("loginForm");
+      loginForm.style.display = "none";
+      alert("ورود با موفقیت انجام شد!");
+    }
+    function toggleNav() {
+      var sidebar = document.getElementById("mySidebar");
+      if (sidebar.style.width === "250px") {
+        closeNav();
+      } else {
+        openNav();
+      }
+    }
+
+    function openNav() {
+      var sidebar = document.getElementById("mySidebar");
+      sidebar.style.width = "250px";
+      sidebar.style.animation = "slideIn 0.5s";
+    }
+
+    function closeNav() {
+      var sidebar = document.getElementById("mySidebar");
+      sidebar.style.animation = "slideOut 0.5s";
+      setTimeout(function () {
+        sidebar.style.width = "0";
+      }, 500);
+    }
+
+    function showCart() {
+    }
+  </script>
+</body>
+
+</html>
+
+

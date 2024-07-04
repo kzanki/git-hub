@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlackShop - فروشگاه لپ‌تاپ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <style>
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background-color: #333;
+            color: white;
+        }
+
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #222;
+        }
+
+        #brand h1 {
+            font-size: 2em;
+            color: #0f0;
+        }
+
+        #search input {
+            padding: 5px;
+            margin-right: 5px;
+        }
+
+        #products {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .product {
+            text-align: center;
+            transition: transform 0.5s;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.5s;
+        }
+
+        /* انیمیشن‌ها */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .product:hover img {
+            animation: pulse 1s infinite;
+        }
+    </style>
+    <header>
+        <div id="brand">
+            <h1>BlackShop</h1>
+        </div>
+        <div id="search">
+            <input type="text" placeholder="جستجو...">
+            <button onclick="searchAnimation()">🔍</button>
+        </div>
+    </header>
+
+    <main>
+        <section id="products">
+            <div class="product" onmouseenter="animateProduct(this)" onmouseleave="resetAnimation(this)">
+                <img src="GB.jpg" alt="لپ‌تاپ مدل 1">
+                <h2>لپ‌تاپ مدل1</h2>
+                <p>قیمت: ۱۸,۰۰۰,۰۰۰ تومان</p>
+                <button onclick="addToCart(this)">افزودن به سبد خرید</button>
+            </div>
+            <div class="product" onmouseenter="animateProduct(this)" onmouseleave="resetAnimation(this)">
+                <img src="GB2.jpg" alt="لپ‌تاپ مدل 2">
+                <h2>لپ‌تاپ مدل 2</h2>
+                <p>قیمت: ۱۸,۰۰۰,۰۰۰ تومان</p>
+                <button onclick="addToCart(this)">افزودن به سبد خرید</button>
+            </div>
+            <div class="product" onmouseenter="animateProduct(this)" onmouseleave="resetAnimation(this)">
+                <img src="GB3.jpg" alt="لپ‌تاپ مدل 3">
+                <h2>لپ‌تاپ مدل 3</h2>
+                <p>قیمت: ۲۰,۰۰۰,۰۰۰ تومان</p>
+                <button onclick="addToCart(this)">افزودن به سبد خرید</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function searchAnimation() {
+        }
+
+        function animateProduct(product) {
+            product.style.transform = 'scale(1.1)';
+        }
+
+        function resetAnimation(product) {
+            product.style.transform = 'scale(1)';
+        }
+
+        function addToCart(button) {
+            alert('کالا به سبد خرید اضافه شد');
+        }
+
+    </script>
+
+</body>
+
+</html>

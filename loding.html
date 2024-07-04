@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loading Page</title>
+</head>
+<body>
+<div class="loading">
+<h1>block</h1>
+<h1 class="shoap">shoap</h1>
+</div>
+</body>
+</html>
+<style>
+        body {
+            background-color: #141212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            animation: fade-in 3s ease-in-out;
+        }
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+        @keyframes fade-in {
+        0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+<h1>black</h1>
+<h1>shoap</h1>
+<img src="BLACK.SHOAP.jpg" alt="Your Site Icon">
+<div class="loding"></div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const loading = document.querySelector(".loading");
+    loading.style.display = "flex";
+    
+    window.addEventListener("load", function() {
+        loading.style.display = "none";
+    });
+});
+function load(url) {
+   
+   document.getElementById('loadingPage').style.visibility = "visible";
+
+   var req = new XMLHttpRequest();
+   req.open("POST", url, true);
+   req.onreadystatechange = function () {
+       if (req.readyState == 4 && req.status == 200) {
+           if (req.responseText) {
+               document.getElementById('content').innerHTML = req.responseText;
+               document.getElementById('loadingPage').style.visibility = "hidden";
+           }
+       }
+   };
+   req.send(vars);
+}
+
+</script>
+</body>
+</html>

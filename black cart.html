@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه خرید</title>
+    <style>
+        body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #222;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s ease;
+}
+
+header {
+    background-color: #060b15bb;
+    color: #fbff00;
+    padding: 10px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #ddd20f;
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#product-list {
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+}
+
+#cart {
+    flex: 0 0 300px;
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    color: #eeff00;
+    text-align: center;
+    padding: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.jpg" alt="logo"width="100px">
+        <h1>black cart</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">صفحه اصلی</a></li>
+            <li><a href="#">محصولات</a></li>
+            <li><a href="#">سبد خرید</a></li>
+            <li><a href="#">تماس با ما</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="product-list">
+         
+            <div class="product" data-name="محصول 1" data-price="1000">محصول 1 - قیمت: 1000 تومان</div>
+            <div class="product" data-name="محصول 2" data-price="2000">محصول 2 - قیمت: 2000 تومان</div>
+        </section>
+        <aside id="cart">
+            <h2>سبد خرید</h2>
+            <ul id="cart-list"></ul>
+            <p id="total-price">قیمت کل: 0 تومان</p>
+        </aside>
+    </main>
+
+    <footer>
+        <p>تمامی حقوق این وبسایت متعلق به فروشگاه آنلاین است.</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const products = document.querySelectorAll(".product");
+
+    products.forEach(function(product) {
+        product.addEventListener("click", function() {
+            const productName = product.getAttribute("data-name");
+            const productPrice = parseFloat(product.getAttribute("data-price"));
+            addToCart(productName, productPrice);
+        });
+    });
+
+    function addToCart(productName, price) {
+        const cartList = document.getElementById("cart-list");
+        const item = document.createElement("li");
+        item.textContent = productName + " - قیمت: " + price;
+        cartList.appendChild(item);
+
+        calculateTotalPrice();
+    }
+
+    function calculateTotalPrice() {
+        let totalPrice = 0;
+        const cartItems = document.querySelectorAll("#cart-list li");
+        cartItems.forEach(function(item) {
+            const priceString = item.textContent.split("قیمت: ")[1];
+            const price = parseFloat(priceString);
+            totalPrice += price;
+        });
+
+        const totalPriceElement = document.getElementById("total-price");
+        totalPriceElement.textContent = "قیمت کل: " + totalPrice + " تومان";
+    }
+});
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فروشگاه آنلاین</title>
+<style>
+body {
+  background-color: #004225; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+.menu {
+  background-color: #006400; 
+  padding: 15px;
+  text-align: center;
+}
+.menu h1 {
+  margin: 0;
+  animation: fadeIn 2s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.product {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+.product-item {
+  text-align: center;
+  animation: popIn 1s forwards;
+}
+@keyframes popIn {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+.product-image {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc; 
+}
+.product-name {
+  font-size: 1.2em;
+}
+.product-price {
+  font-size: 1.5em;
+}
+.add-to-cart {  background-color: #008000; 
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+</style>
+</head>
+<body>
+
+<div class="menu">
+  <h1>blackE</h1>
+</div>
+
+<div class="product">
+  <div class="product-item">
+    <div class="product-image"><img src="X.jpg" width="100%"></div>
+    <div class="product-name">محصول 11</div>
+    <div class="product-price">1000 تومان</div>
+    <button class="add-to-cart">افزودن به سبد خرید</button>
+  </div>
+  <div class="product-item">
+    <div class="product-image"><img src="XX.jpg"width="100%"></div>
+    <div class="product-name">محصول 11</div>
+    <div class="product-price">1000 تومان</div>
+    <button class="add-to-cart">افزودن به سبد خرید</button>
+  </div>
+  <div class="product-item">
+    <div class="product-image"><img src="Xboxx.jpg"width="100%"></div>
+    <div class="product-name">محصول 11</div>
+    <div class="product-price">1000 تومان</div>
+    <button class="add-to-cart">افزودن به سبد خرید</button>
+  </div>
+</div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  var addToCartButtons = document.querySelectorAll('.add-to-cart');
+  addToCartButtons.forEach(function(button) {
+    button.onclick = function() {
+      alert('محصول به سبد خرید اضافه شد');
+      
+      this.style.animation = 'none';
+      setTimeout(() => {
+        this.style.animation = '';
+      }, 10);
+    };
+  });
+});
+</script>
+
+</body>
+</html>

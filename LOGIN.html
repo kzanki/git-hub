@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <a href="lodin.html"></a>
+    <style>
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 400px;
+      padding: 20px;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      background-color: #222;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #fff;
+      border-radius: 3px;
+      background-color: #333;
+      color: #fff;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 3px;
+      background-color: #555;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .error {
+      color: #110f0f;
+      margin-bottom: 10px;
+    }
+
+    .success {
+      color: #272927;
+      margin-bottom: 10px;
+    }
+    
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .logo img {
+      width: 200px;
+      height: auto;
+    }
+  </style>
+    </style>
+  
+</head>
+<body>
+    <h1 class="h1">login from</h1>
+    <h1 class="h1">black SHOAP</h1>
+    <div class="container">
+        <div class="logo">
+          <img src="gril black shop login.jpg" alt="نام فروشگاه">
+        </div>
+        
+        <h1>ورود به سیستم</h1>
+        <form id="loginForm" method="post">
+          <label for="username">نام کاربری:</label>
+          <input type="text" id="username" name="username" required>
+    
+          <label for="password">رمز عبور:</label>
+          <input type="password" id="password" name="password" required>
+    
+          <button type="submit">ورود</button>
+        </form>
+    
+        <div id="errorContainer"></div>
+      </div>
+    
+    <script>
+        
+    
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+
+    
+      var usernamePattern = /^[A-Za-z0-9]{4,}$/;
+      var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+
+   
+      var errorContainer = document.getElementById("errorContainer");
+      errorContainer.innerHTML = ""; 
+      if (!usernamePattern.test(username)) {
+        showError("نام کاربری باید حداقل ۴ حرف یا عدد باشد.");
+        return;
+      }
+
+      if (!passwordPattern.test(password)) {
+        showError("رمز عبور باید حداقل ۸ کاراکتر شامل حروف بزرگ، حروف کوچک و اعداد باشد.");
+        return;
+      }
+
+      showSuccess("ورود موفقیت‌آمیز بود!");
+
+      document.getElementById("username").value = "";
+      document.getElementById("password").value = "";
+    });
+
+    function showError(message) {
+      var errorContainer = document.getElementById("errorContainer");
+      var errorElement = document.createElement("p");
+      errorElement.textContent = message;
+      errorContainer.appendChild(errorElement);
+    }
+
+    function showSuccess(message) {
+      alert(message);
+    }
+    </script>
+</body>
+</html>

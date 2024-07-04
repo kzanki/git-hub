@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه وب</title>
+    <style>
+        /* Styles for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .logo img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .products {
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .slider {
+            display: flex;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+        }
+
+        .slide {
+            flex: 0 0 auto;
+            width: 300px;
+            margin-right: 10px;
+            scroll-snap-align: start;
+        }
+
+        .slide img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .slide h3 {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        .add-to-cart {
+            display: block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .slider-controls {
+            margin-top: 20px;
+        }
+
+        /* JavaScript code */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="logo.png" alt="لوگو">
+            </div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">صفحه اصلی</a></li>
+                    <li><a href="#">محصولات</a></li>
+                    <li><a href="#">درباره ما</a></li>
+                    <li><a href="#">تماس با ما</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="products">
+        <div class="slider">
+            <div class="slide">
+                <img src="product1.png" alt="محصول ۱">
+                <h3>محصول ۱</h3>
+                <button class="add-to-cart">افزودن به سبد خرید</button>
+            </div>
+            <div class="slide">
+                <img src="product2.png" alt="محصول ۲">
+                <h3>محصول ۲</h3>
+                <button class="add-to-cart">افزودن به سبد خرید</button>
+            </div>
+            <!-- اسلایدهای دیگر -->
+        </div>
+
+        <div class="slider-controls">
+            <button id="prevBtn">قبلی</button>
+            <button id="nextBtn">بعدی</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
+            const slider = document.querySelector(".slider");
+            const slides = document.querySelectorAll(".slide");
+            const slideWidth = slides[0].offsetWidth;
+            let currentIndex = 0;
+
+            prevBtn.addEventListener("click", function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    slider.style.transform = translateX(-${slideWidth * currentIndex}px);
+                }
+            });
+
+            nextBtn.addEventListener("click", function() {
+                if (currentIndex < slides.length - 1) {
+                    currentIndex++;
+                    slider.style.transform = translateX(-${slideWidth * currentIndex}px);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

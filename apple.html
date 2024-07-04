@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Black Shop</title>
+<style>
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #333;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #222;
+}
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+.header nav {
+  display: flex;
+}
+.header nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  transition: color 0.3s ease;
+}
+.header nav a:hover {
+  color: #777;
+}
+.search-bar {
+  position: relative;
+}
+.search-bar input {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+}
+.search-bar button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px 10px;
+  border: none;
+  background-color: #555;
+  color: white;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+.search-bar button:hover {
+  background-color: #777;
+}
+.product-card {
+  background-color: #444;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 20px;
+  width: calc(33% - 40px);
+  float: left;
+  transition: transform 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+}
+.product-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+.product-card h3 {
+  margin: 10px 0;
+}
+.product-card p {
+  margin: 5px 0;
+}
+.add-to-cart {
+  padding: 10px 20px;
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.add-to-cart:hover {
+  background-color: #777;
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="logo">Black Shop</div>
+  <nav>
+    <a href="#">Apple</a>
+    <div class="search-bar">
+      <input type="text" placeholder="جستجو...">
+      <button>جستجو</button>
+      <a href="S.html">home</a>
+    </div>
+  </nav>
+</div>
+<div class="product-container">
+  <div class="product-card">
+    <img src="iphone15.jpg" alt="محصول 1">
+    <h3>iphone15</h3>
+    <p>قیمت:0 تومان</p>
+    <button class="add-to-cart">افزودن به سبد خرید</button>
+  </div>
+  <div class="product-card">
+    <img src="iphone11.jpg" alt="محصول 2">
+    <h3>iphone11</h3>
+    <p>قیمت:0 تومان</p>
+    <button class="add-to-cart">افزودن به سبد خرید</button>
+  </div>
+  <div class="product-card">
+    <img src="MacBook Pro laptop.jpg" alt="محصول 3">
+    <h3>MacBook Pro laptop</h3>
+    <p>قیمت:0 تومان</p>
+    <button class="add-to-cart">افزودن به سبد خرید</button>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+
+    const menuItems = document.querySelectorAll('.header nav a');
+    menuItems.forEach(item => {
+      item.addEventListener('mouseover', () => {
+        item.style.transform = 'scale(1.1)';
+      });
+      item.addEventListener('mouseout', () => {
+        item.style.transform = 'scale(1)';
+      });
+    });
+  
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach(card => {
+      card.addEventListener('mouseover', () => {
+        card.style.boxShadow = '0 4px 8px 0 rgba(0, 0, 0, 0.2)';
+      });
+      card.addEventListener('mouseout', () => {
+        card.style.boxShadow = 'none';
+      });
+    });
+  
+   
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    addToCartButtons.forEach(button => {
+      button.addEventListener('click', () => {
+      
+        alert('محصول به سبد خرید اضافه شد!');
+      });
+    });
+  });
+  
+
+</script>
+</body>
+</html>

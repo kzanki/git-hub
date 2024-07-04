@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <title>پنل ادمین Plan Black Shop</title>
+    <style>
+        body {
+            font-family: 'Tahoma', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+        }
+
+        .header {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .admin-panel {
+            width: 80%;
+            margin: 20px auto;
+            background: #444;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+            color: #fff;
+        }
+
+        th {
+            background-color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        select {
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        Plan Black Shop
+    </div>
+    <div class="admin-panel">
+        <input type="text" id="searchInput" placeholder="جستجوی نام مشتری...">
+        <select id="statusFilter">
+            <option value="all">همه</option>
+            <option value="pending">در انتظار</option>
+            <option value="completed">تکمیل شده</option>
+        </select>
+        <?php
+        // اتصال به دیتابیس
+        $db = new mysqli('localhost', 'username', 'password', 'database_name');
+        // بررسی اتصال
+        if ($db->connect_error) {
+            die("اتصال ناموفق: " . $db->connect_error);
+        }
+        // دریافت سفارشات
+        $query = "SELECT order_id, customer_name, status, created_at FROM orders ORDER BY created_at DESC";
+        $result = $db->query($query);
+        if ($result->num_rows > 0) {
+            echo "<table id='ordersTable'><tr><th>شماره سفارش</th><th>نام مشتری</th><th>وضعیت</th><th>تاریخ سفارش</th></tr>";
+            while($row = $result->fetch_assoc()) {
+                echo "<tr><td>".$row["order_id"]."</td><td>".$row["customer_name"]."</td><td>".$row["status"]."</td><td>".$row["created_at"]."</td></tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "هیچ سفارشی یافت نشد.";
+        }
+        $db->close();
+        ?>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var searchInput = document.getElementById('searchInput');
+            var statusFilter = document.getElementById('statusFilter');
+            var table = document.getElementById('ordersTable');
+            var tr = table.getElementsByTagName('tr');
+
+            searchInput.addEventListener('keyup', function () {
+                var filter = searchInput.value.toUpperCase();
+                for (var i = 0; i < tr.length; i++) {
+                    var td = tr[i].getElementsByTagName('td')[1];
+                    if (td) {
+                        var txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = '';
+                        } else {
+                            tr[i].style.display = 'none';
+                        }
+                    }
+                }
+            });
+
+            statusFilter.addEventListener('change', function () {
+                var filter = statusFilter.value.toUpperCase();
+                for (var i = 0; i < tr.length; i++) {
+                    var td = tr[i].getElementsByTagName('td')[3];
+                    if (td) {
+                        var txtValue = td.textContent || td.innerText;
+                        if (filter == "ALL" || txtValue.toUpperCase() == filter) {
+                            tr[i].style.display = '';
+                        } else {
+                            tr[i].style.display = 'none';
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

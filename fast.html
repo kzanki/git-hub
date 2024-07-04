@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سایت خرید آنلاین</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <a href="LOGIN.html"></a>
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+
+        .item {
+            font-size: 18px;
+        }
+
+        .product {
+            text-align: center;
+            margin: 10px;
+        }
+
+        .product img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        .slider {
+            width: 70%;
+            margin: 0 auto;
+            font-size: 24px;
+        }
+
+        .user-icon::before {
+            content: "\f007";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 24px;
+        }
+
+        .menu .item {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .product-details {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .product-details img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .product-details button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        .product-new {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+            background-color: #f0f0f0;
+            margin-top: 20px;
+        }
+
+        .product-new .new-item {
+            text-align: center;
+            margin: 10px;
+        }
+
+        .product-new .new-item img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .slide-item img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide-control {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .slide-control button {
+            font-size: 24px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .slider-dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .slider-dots .slider-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #bbb;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <div class="item">جستجو: <input type="text" placeholder="جستجو..."></div>
+        <div class="item" onclick="showCart()"> <img src="shopping bag-32.png"><span class="cart-icon"></span></div>
+        <div class="item" onclick="showLogin()"><span class="user-icon"></span></div>
+        <div class="item">شگفت‌انگیزه</div>
+    </div>
+
+    <div class="container">
+        <div class="product" onclick="showProductDetails('iPhone 1')">
+            <img src="iphone1.jpg" alt="iPhone 1">
+            <p>50,000 تومان</p>
+        </div>
+        <div class="product" onclick="showProductDetails('iPhone 2')">
+            <img src="iphone2.jpg" alt="iPhone 2">
+            <p>60,000 تومان</p>
+        </div>
+        <div class="product" onclick="showProductDetails('iPhone 3')">
+            <img src="iphone3.jpg" alt="iPhone 3">
+            <p>70,000 تومان</p>
+        </div>
+    </div>
+    <div class="product-details hidden">
+        <img src="" alt="" id="product-image">
+        <h2 id="product-name"></h2>
+        <p id="product-price"></p>
+        <button onclick="addToCart()">افزودن به سبد خرید</button>
+    </div>
+
+    <div class="product-new">
+        <div class="new-item">
+            <img src="iphone5.jpg" alt="iPhone 4">
+            <p>80,000 تومان</p>
+        </div>
+        <div class="new-item">
+            <img src="iphone1.jpg" alt="iPhone 5">
+            <p>90,000 تومان</p>
+        </div>
+        <div class="new-item">
+            <img src="iphone3.jpg" alt="iPhone 6">
+            <p>100,000 تومان</p>
+        </div>
+    </div>
+
+    <div class="slider">
+        <div class="slide-item">
+            <img src="L1.jpg" alt="Slide 1">
+        </div>
+        <div class="slide-item">
+            <img src="L2.jpg" alt="Slide 2">
+        </div>
+        <div class="slide-item">
+            <img src="L3.jpg" alt="Slide 3">
+        </div>
+    </div>
+
+    <div class="slide-control">
+        <button onclick="prevSlide()">&#10094;</button>
+        <button onclick="nextSlide()">&#10095;</button>
+    </div>
+
+    <div class="slider-dots">
+        <span class="slider-dot" onclick="currentSlide(1)"></span>
+        <span class="slider-dot" onclick="currentSlide(2)"></span>
+        <span class="slider-dot" onclick="currentSlide(3)"></span>
+    </div>
+    <script>
+        var cartVisible = false;
+
+        function showCart() {
+            var cart = document.getElementById("cart");
+            cartVisible = !cartVisible;
+            if (cartVisible) {
+                cart.style.display = "block";
+            } else {
+                cart.style.display = "none";
+            }
+        }
+
+        function showProductDetails(productName) {
+            var productDetails = document.getElementsByClassName("product-details")[0];
+            var productImage = document.getElementById("product-image");
+            var productNameElement = document.getElementById("product-name");
+            var productPriceElement = document.getElementById("product-price");
+            productImage.src = productName.toLowerCase() + ".jpg";
+            productNameElement.textContent = productName;
+            productPriceElement.textContent = "قیمت: " + getProductPrice(productName) + " تومان";
+            productDetails.classList.remove("hidden");
+        }
+
+        function addToCart() {
+            var productName = document.getElementById("product-name").textContent;
+            var cart = document.getElementById("cart");
+            var cartItems = cart.getElementsByClassName("cart-item");
+            var cartItem = document.createElement("div");
+            cartItem.classList.add("cart-item");
+            cartItem.textContent = productName;
+            cart.appendChild(cartItem);
+        }
+
+        function getProductPrice(productName) {
+            switch (productName) {
+                case "iPhone 1":
+                    return "50,000";
+                    return "60,000";
+                case "iPhone 2":
+                case "iPhone 3":
+                    return "70,000";
+                case "iPhone 4":
+                    return "80,000";
+                case "iPhone 5":
+                    return "90,000";
+                case "iPhone 6":
+                    return "100,000";
+                default:
+                    return "0";
+            }
+        }
+
+        var slideIndex = 1;
+        showSlide(slideIndex);
+
+        function prevSlide() {
+            showSlide(slideIndex -= 1);
+        }
+
+        function nextSlide() {
+            showSlide(slideIndex += 1);
+        }
+
+        function currentSlide(n) {
+            showSlide(slideIndex = n);
+        }
+
+        function showSlide(n) {
+            var slides = document.getElementsByClassName("slide-item");
+            var dots = document.getElementsByClassName("slider-dot");
+            if (n > slides.length) {
+                slideIndex = 1;
+            }
+            if (n < 1) {
+                slideIndex = slides.length;
+            }
+            for (var i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (var i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].classList.add("active");
+        }
+    </script>
+</body>
+
+</html>

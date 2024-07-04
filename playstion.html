@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فروشگاه پلی استیشن</title>
+<style>
+    /* انیمیشن برای دکمه‌های افزودن به سبد */
+.add-to-cart {
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s ease;
+}
+
+.add-to-cart::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #45a049;
+  transition: transform 0.3s ease;
+  transform: translateY(100%);
+  z-index: -1;
+}
+
+.add-to-cart:hover::after {
+  transform: translateY(0%);
+}
+
+.add-to-cart:hover {
+  color: white;
+}
+
+/* انیمیشن برای محصولات */
+.product {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.product:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e6f7ff;
+  }
+  .navbar {
+    background-color: #0073e6;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 50px;
+  }
+  .navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    transition: background-color 0.5s;
+  }
+  .navbar a:hover {
+    background-color: #0056b3;
+  }
+  .search-container {
+    display: flex;
+    align-items: center;
+  }
+  .search-container input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    outline: none;
+  }
+  .search-container button {
+    padding: 10px;
+    background: #2225f8;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  .search-container button:hover {
+    background: #207cae;
+  }
+  .product-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  .product {
+    border: 1px solid #0073e6;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+    transition: transform 0.5s;
+  }
+  .product:hover {
+    transform: scale(1.05);
+  }
+  .add-to-cart {
+    background-color: #3f67f8;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+  }
+  .add-to-cart:hover {
+    background-color: #05cae9;
+  }
+  h1{
+    color:wheat;
+  }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <img src="run.jpg" style="width:10%;">
+    <h1>BLACK SHOP</h1>
+  <a href="S.html">خانه</a>
+  <div class="search-container">
+    <input type="text" placeholder="جستجو...">
+    <button type="submit">جستجو</button>
+  </div>
+  <a href="#shop">فروشگاه</a>
+  <a href="playstion.html">پلی استیشن</a>
+</div>
+
+<div class="product-container">
+  <div class="product">
+    <h4>PlayStation 5</h4>
+    <img src="PlayStation 5.jpg" style="width:100%; height:auto;">
+    <p>قیمت:2800 تومان</p>
+    <button class="add-to-cart">افزودن به سبد</button>
+  </div>
+  <div class="product">
+    <h4>PlayStation 4 Slim</h4>
+    <img src="PlayStation 4 Slim.jpg" style="width:100%; height:auto;">
+    <p>قیمت: 12.00 تومان</p>
+    <button class="add-to-cart">افزودن به سبد</button>
+  </div>
+  <div class="product">
+    <h4>playstation headset</h4>
+    <img src="playstation headset.jpg" style="width:100%; height:auto;">
+    <p>قیمت: 5,0 تومان</p>
+    <button class="add-to-cart">افزودن به سبد</button>
+  </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var addToCartButtons = document.querySelectorAll('.add-to-cart');
+    addToCartButtons.forEach(function(button, index) {
+      button.addEventListener('click', function() {
+        addToCart('محصول ' + (index + 1));
+      });
+    });
+  });
+document.addEventListener('DOMContentLoaded', function() {
+  var addToCartButtons = document.querySelectorAll('.add-to-cart');
+  addToCartButtons.forEach(function(button, index) {
+    button.addEventListener('click', function() {
+      alert('محصول ' + (index + 1) + ' به سبد خرید افزوده شد.');
+    });
+  });
+});
+
+</script>
+</body>
+</html>

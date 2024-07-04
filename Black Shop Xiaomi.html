@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<title>Black Shop Xiaomi</title>
+<style>
+  body {
+    background-color: #ff8c00; 
+    font-family: 'Arial', sans-serif;
+    color: white;
+  }
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  .menu h1 {
+    flex-grow: 1;
+    text-align: center;
+  }
+  .shopping-cart {
+    cursor: pointer;
+    animation: bounce 1s infinite;
+  }
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-30px);}
+    60% {transform: translateY(-15px);}
+  }
+  .cart-details {
+    display: none;
+    position: absolute;
+    right: 10px;
+    width: 300px;
+    background: #333;
+    color: white;
+    border: 1px solid #777;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  .product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 10px;
+  }
+  .product {
+    width: 200px;
+    margin: 10px;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+  }
+  .product:hover {
+    transform: translateY(-5px);
+  }
+ 
+@keyframes jump {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.add-to-cart-btn {
+  animation: jump 0.5s ease;
+}
+.add-to-cart-btn {
+  padding: 10px 20px;
+  background-color: #e67e22;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #d35400;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.add-to-cart-btn:active {
+  background-color: #c0392b;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transform: translateY(2px);
+}
+
+</style>
+</head>
+<body>
+
+<div class="menu">
+  <button onclick="toggleCart()">سبد خرید</button>
+  <h1>BLACK SHOP XIAOMI</h1>
+  <input type="text" placeholder="جستجو...">
+</div>
+
+
+<div id="shopping-cart" style="display:none;">
+ 
+</div>
+
+<div class="product-container">
+
+  <div class="product">
+    <img src="Xiaomi 1.jpg" alt="Product Image" style="width:100%;">
+    <h2>Xiaomi 1</h2>
+    <p>???</p>
+    <button onclick="addToCart(this)">افزودن به سبد خرید</button>
+  </div>
+  <div class="product">
+    <img src="Xiaomi 2.jpg" alt="Product Image" style="width:100%;">
+    <h2>Xiaomi 2</h2>
+    <p>3???</p>
+    <button onclick="addToCart(this)">افزودن به سبد خرید</button>
+  </div>
+  
+</div>
+
+<script>
+
+function addToCart(button) {
+  button.classList.add('add-to-cart-btn');
+  button.innerHTML = 'اضافه شده!';
+  
+  alert('محصول به سبد خرید اضافه شد');
+  
+  button.style.animation = 'jump 0.5s ease';
+ 
+  setTimeout(() => {
+    button.style.animation = '';
+  }, 500);
+}
+
+</script>
+
+</body>
+</html>

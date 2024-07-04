@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>صفحه ثبت نام</title>
+<style>
+  body {
+    font-family: 'Tahoma', sans-serif;
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .register-form {
+    width: 300px;
+    padding: 20px;
+    background: #222;
+    border-radius: 5px;
+  }
+  .form-control {
+    margin-bottom: 10px;
+  }
+  .form-control label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  .form-control input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+  }
+  .form-control input[type="submit"] {
+    background-color: #050505;
+    color: white;
+    cursor: pointer;
+  }
+  .form-control input[type="submit"]:hover {
+    background-color: #080908;
+  }
+</style>
+</head>
+<body>
+  <div class="register-form">
+    <img src="gril black shop.jpg" style="text-align: center;width:100%;height:auto; border-radius:5%;">
+    <form>
+      <div class="form-control">
+        <label for="name">نام:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-control">
+        <label for="username">نام کاربری:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="form-control">
+        <label for="phone">شماره تلفن:</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+      <div class="form-control">
+        <label for="password">رمز عبور:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-control">
+        <input type="submit" value="ثبت نام">
+      </div>
+    </form>
+  </div>
+  <script>
+function validateForm() {
+  var name = document.getElementById('name').value;
+  var username = document.getElementById('username').value;
+  var phone = document.getElementById('phone').value;
+  var password = document.getElementById('password').value;
+
+
+  if(name.length > 10) {
+    alert('نام نباید بیشتر از 10 حرف باشد.');
+    return false;
+  }
+
+  if(username.length > 4 || !/^[a-zA-Z]*$/.test(username)) {
+    alert('نام کاربری باید حداکثر 4 حرف انگلیسی باشد.');
+    return false;
+  }
+
+  
+  if(phone.length < 11 || !/^\d+$/.test(phone)) {
+    alert('شماره تلفن باید حداقل 11 رقم و فقط شامل اعداد باشد.');
+    return false;
+  }
+
+  if(password.length < 8) {
+    alert('رمز عبور باید حداقل 8 حرف باشد.');
+    return false;
+  }
+
+  return true;
+}
+
+document.getElementById('registrationForm').onsubmit = validateForm;
+
+  </script>
+</body>
+</html>

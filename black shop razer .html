@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Black Shop Razer</title>
+<style>
+/* اضافه کردن Animate.css برای انیمیشن‌های آماده */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+.header {
+  background-color: #4CAF50;
+  padding: 10px;
+  text-align: center;
+  /* انیمیشن برای منو */
+  animation: slideInDown 1s ease-in-out;
+}
+@keyframes slideInDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+.search-container input[type="text"] {
+  padding: 10px;
+  font-size: 17px;
+  border: none;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+.search-container button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+.search-container button:hover {
+  background: #0b7dda;
+}
+.product-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.product {
+  background-color: #000;
+  color: #fff;
+  margin: 10px;
+  padding: 20px;
+  width: calc(25% - 40px);
+  /* انیمیشن برای محصولات */
+  animation: zoomIn 1s ease-in-out;
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.product img {
+  max-width: 100%;
+  height: auto;
+}
+.product-info {
+  margin-top: 15px;
+}
+.product-info h3, .product-info p, .product-info button {
+  margin: 5px 0;
+}
+.add-to-cart {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  /* انیمیشن دستی برای دکمه‌ها */
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+}
+.add-to-cart:hover {
+  background-color: #45a049;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1 class="animate__animated animate__fadeInLeft">Black Shop Razer</h1>
+</div>
+
+<div class="search-container">
+  <input type="text" placeholder="جستجو...">
+  <button type="submit">جستجو</button>
+</div>
+
+<div class="product-container">
+   <div class="product animate__animated animate__fadeInUp">
+    <img src="razer2.jpg" alt="Product Image">
+    <div class="product-info">
+      <h3>نام razer</h3>
+      <p>قیمت محصول</p>
+      <button class="add-to-cart">افزودن به سبد خرید</button>
+    </div>
+  </div>
+ <div class="product animate__animated animate__fadeInUp">
+    <img src="razer.jpg" alt="Product Image">
+    <div class="product-info">
+      <h3>نام razer</h3>
+      <p>قیمت محصول</p>
+      <button class="add-to-cart">افزودن به سبد خرید</button>
+    </div>
+  </div>
+ <div class="product animate__animated animate__fadeInUp">
+    <img src="razer3.jpg" alt="Product Image">
+    <div class="product-info">
+      <h3>نام razer</h3>
+      <p>قیمت محصول</p>
+      <button class="add-to-cart">افزودن به سبد خرید</button>
+    </div>
+  </div>
+  <div class="product animate__animated animate__fadeInUp">
+    <img src="razer4.jpg" alt="Product Image">
+    <div class="product-info">
+      <h3>نام razer</h3>
+      <p>قیمت محصول</p>
+      <button class="add-to-cart">افزودن به سبد خرید</button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+  const cart = [];
+
+  document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', function() {
+      const productInfo = this.closest('.product').querySelector('.product-info');
+      const productName = productInfo.querySelector('h3').innerText;
+      const productPrice = productInfo.querySelector('p').innerText;
+      const product = {
+        name: productName,
+        price: productPrice
+      };
+      cart.push(product);
+      alert(productName + ' به سبد خرید اضافه شد.');
+    });
+  });
+});
+</script>
+
+</body>
+</html>

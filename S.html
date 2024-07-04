@@ -1,0 +1,757 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Shop</title>
+    <style>
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background-color: #121312;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #000000;
+            padding: 10px;
+            width: max-content;
+        }
+
+        .navbar a {
+            color: rgb(188, 182, 182);
+            text-decoration: none;
+            padding: 8px 15px;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        .product-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .product {
+            width: 200px;
+            padding: 10px;
+            background-color: #060606;
+            margin: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .product img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+
+        .product p {
+            color: white;
+            margin: 5px 0;
+        }
+
+        .product button {
+            background-color: #121312;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .product button:hover {
+            background-color: #0da3b0;
+            transform: translateY(-3px);
+        }
+
+        .product button:active {
+            transform: translateY(1px);
+        }
+
+        .cart-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            font-size: 12px;
+            line-height: 20px;
+        }
+
+        .drawer-menu {
+    position: fixed;
+    top: 0;
+    right: -250px;
+
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  
+    z-index: 1000;
+    
+    overflow-y: auto;
+
+    animation: slideIn 0.3s forwards;
+    
+}
+
+
+.drawer-menu.open {
+    transform: translateX(0);
+}
+
+        .drawer-menu a {
+            display: block;
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .drawer-menu a:hover {
+            background-color: #000000;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        p {
+            color: white;
+        }
+
+        .product-new .new-item {
+            text-align: center;
+            margin: 10px;
+        }
+
+        .product-new .new-item img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+
+        .product-new {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+            background-color: #000000;
+            margin-top: 20px;
+        }
+
+        .sope {
+            background-color: #121312;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @keyframes slideIn {
+    from {
+        transform: translateX(250px);
+        opacity: 0; 
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1; 
+    }
+}
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+               
+            }
+
+            to {
+                transform: translateX(250px);
+                
+            }
+        }
+
+        .slider {
+            width: 100%;
+            margin: 0 auto;
+            font-size: 24px;
+            overflow: hidden;
+            /* Added */
+        }
+
+        .slide-item {
+            display: none;
+        }
+
+        .slide-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        .slide-control {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .slide-control button {
+            font-size: 24px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .slider-dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .slider-dots .slider-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #bbb;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        .product {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .product:hover {
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .product button {
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .product button:hover {
+            background-color: #0da3b0;
+            transform: translateY(1px);
+        }
+
+        .product button:active {
+            transform: translateY(1px);
+        }
+
+        .cart-items {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background-color: black;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            z-index: 2;
+        }
+
+        .cart-item {
+            margin-bottom: 5px;
+        }
+
+        .cart-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .drawer-menu {
+
+            transition: transform 0.3s ease-in-out;/
+        }
+
+        .drawer-menu.open {
+            transform: translateX(0);
+        }
+        body {
+            background-color: #121312;
+            color: #fff;
+            font-family: 'Tahoma', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .drawer-menu {
+            position: fixed;
+            top: 0px;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background-color:grey ;
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+            overflow-y: auto;
+            padding-top: 50px; 
+        }
+        
+        .drawer-menu.open {
+            right: 0;
+        }
+        
+       
+        .cart-items {
+            position: fixed;
+            top: 80px;
+            right: 0px;
+            width: 300px;
+            height: calc(100% - 80px);
+            background-color: #000;
+            padding: 20px;
+            overflow-y: auto;
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+        }
+        
+        .cart-items.open {
+            right: 0;
+        }
+        
+
+        .product {
+            width: 200px;
+            padding: 10px;
+            background-color: #060606;
+            margin: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .product:hover {
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        .fade {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1s;
+        animation-name: fade;
+        animation-duration: 1s;
+    }
+
+    @-webkit-keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    @keyframes fade {
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">Black Shop</div>
+        <span class="menu-icon" onclick="toggleNav(event)">☰</span>
+
+
+        <div>
+            <input class="search" type="search" placeholder="جستجو">
+            <div class="cart-icon" onclick="toggleCart()">
+                <img src="small.jpg" id="cart-button"
+                    style="width: 3%;height: auto;margin: 12px -62px 14px;position: fixed;">
+                <span id="cart-count" class="cart-count">0</span>
+            </div>
+            <a href="LOGIN.html">ورود</a>
+            <a href="loginA.html">ثبت نام</a>
+            <a href="phoneshope.html">تماس با ما</a>
+        </div>
+    </div>
+
+    <div class="product-grid">
+        <div class="product">
+            <img src="iphone3.jpg" alt="محصول">
+            <p>iphone</p>
+            <p>تومان ۰۰</p>
+            <button onclick="addToCart(this)">افزودن به سبد خرید</button>
+        </div>
+        <div class="product">
+            <img src="Galaxy S20.jpg" alt="محصول">
+            <p>sumsung</p>
+            <p>تومان ۰۰</p>
+            <button onclick="addToCart(this)">افزودن به سبد خرید</button>
+        </div>
+        <div class="product">
+            <img src="Xbox Series S.jpg" alt="محصول">
+            <p>xbox</p>
+            <p>تومان ۰</p>
+            <button onclick="addToCart(this)">افزودن به سبد خرید</button>
+        </div>
+        <div class="product">
+            <img src="Xbox Series S and Xbox Ser.jpg" alt="محصول">
+            <p>xbox</p>
+            <p>تومان ۰</p>
+            <button onclick="addToCart(this)">افزودن به سبد خرید</button>
+        </div>
+        <div class="product">
+            <img src="samsung-galaxy-s21-smartphones.jpg" alt="محصول">
+            <p>sumsung</p>
+            <p>تومان ۰</p>
+            <button onclick="addToCart(this)">افزودن به سبد خرید</button>
+        </div>
+    </div>
+
+    <div class="drawer-menu">
+        <a href="apple.html">APPLE</a>
+        <a href="samsung.html">SAMSUNG</a>
+        <a href="playstion.html">PLAYSTATION</a>
+        <a href="xbox.html">XBOX</a>
+        <a href="asus.html">ASUS</a>
+        <a href="Black Shop Xiaomi.html">Black Shop Xiaomi</a>
+        <a href="BLack shop E.html">BLACKE</a>
+        <a href="Black ShopRazer.html">Razer</a>
+        <a href="black shop razer .html">razer c</a>
+        <a href="blackLg.html">BLACKG SHOP</a>
+    </div>
+
+    <div class="slider">
+        <div class="slide-item">
+            <img src="xbox.jpg" alt="Slide 1">
+        </div>
+        <div class="slide-item">
+            <img src="MACKBOOK BLACK.jpg" alt="Slide 2">
+        </div>
+        <div class="slide-item">
+            <img src="samsung-galaxy-s21-smartphones.jpg" alt="Slide 3">
+        </div>
+    </div>
+    
+    <div class="slide-control">
+        <button onclick="plusSlides(-1)">&#10094;</button>
+        <button onclick="plusSlides(1)">&#10095;</button>
+    </div>
+    
+    <div class="slider-dots">
+        <span class="slider-dot" onclick="currentSlide(1)"></span>
+        <span class="slider-dot" onclick="currentSlide(2)"></span>
+        <span class="slider-dot" onclick="currentSlide(3)"></span>
+    </div>
+    
+
+    <div class="cart-items" id="cart-items">
+    
+    </div>
+
+    <script>
+      
+        function toggleNav(event) {
+            if (event.target.classList.contains('menu-icon')) {
+                var sidebar = document.querySelector(".drawer-menu");
+                sidebar.classList.toggle("open");
+            } else {
+                
+                var sidebar = document.querySelector(".drawer-menu");
+                sidebar.classList.remove("open");
+            }
+        }
+    
+        function openCart() {
+            document.getElementById("cart-items").style.display = "block";
+        }
+    
+        function closeCart() {
+            document.getElementById("cart-items").style.display = "none";
+        }
+    
+        function toggleCart() {
+            var cart = document.getElementById("cart-items");
+            if (cart.style.display === "block") {
+                closeCart();
+            } else {
+                openCart();
+            }
+        }
+    
+        function addToCart(button) {
+            var product = button.parentNode;
+            var productName = product.querySelector("p").textContent;
+            var productPrice = product.querySelectorAll("p")[1].textContent;
+            cartItems.push({ name: productName, price: productPrice });
+            updateCart();
+        }
+    
+        function removeFromCart(index) {
+            cartItems.splice(index, 1);
+            updateCart();
+        }
+    
+        function updateCart() {
+            var cartContent = document.getElementById("cart-items");
+            cartContent.innerHTML = "";
+            var totalPrice = 0;
+            cartItems.forEach(function (item, index) {
+                var cartItem = document.createElement("div");
+                cartItem.classList.add("cart-item");
+                var itemName = document.createElement("p");
+                itemName.textContent = item.name;
+                var itemPrice = document.createElement("p");
+                itemPrice.textContent = item.price;
+                var removeButton = document.createElement("button");
+                removeButton.textContent = "حذف";
+                removeButton.onclick = function () {
+                    removeFromCart(index);
+                };
+                cartItem.appendChild(itemName);
+                cartItem.appendChild(itemPrice);
+                cartItem.appendChild(removeButton);
+                cartContent.appendChild(cartItem);
+                totalPrice += parseInt(item.price.replace(/\D/g, ""));
+            });
+    
+            var totalElement = document.createElement("p");
+            totalElement.textContent = "قیمت کل: " + totalPrice.toLocaleString() + " تومان";
+            cartContent.appendChild(totalElement);
+        }
+        function openCart() {
+            document.getElementById("cart-items").style.display = "block";
+        }
+
+        function closeCart() {
+            document.getElementById("cart-items").style.display = "none";
+        }
+
+        function toggleCart() {
+            var cart = document.getElementById("cart-items");
+            if (cart.style.display === "block") {
+                closeCart();
+            } else {
+                openCart();
+            }
+        }
+
+        function addToCart(button) {
+            var product = button.parentNode;
+            var productName = product.querySelector("p").textContent;
+            var productPrice = product.querySelectorAll("p")[1].textContent;
+            cartItems.push({ name: productName, price: productPrice });
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            cartItems.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            var cartContent = document.getElementById("cart-items");
+            cartContent.innerHTML = "";
+            var totalPrice = 0;
+            cartItems.forEach(function (item, index) {
+                var cartItem = document.createElement("div");
+                cartItem.classList.add("cart-item");
+                var itemName = document.createElement("p");
+                itemName.textContent = item.name;
+                var itemPrice = document.createElement("p");
+                itemPrice.textContent = item.price;
+                var removeButton = document.createElement("button");
+                removeButton.textContent = "حذف";
+                removeButton.onclick = function () {
+                    removeFromCart(index);
+                };
+                cartItem.appendChild(itemName);
+                cartItem.appendChild(itemPrice);
+                cartItem.appendChild(removeButton);
+                cartContent.appendChild(cartItem);
+                totalPrice += parseInt(item.price.replace(/\D/g, ""));
+            });
+
+            var totalElement = document.createElement("p");
+            totalElement.textContent = "قیمت کل: " + totalPrice.toLocaleString() + " تومان";
+            cartContent.appendChild(totalElement);
+        }
+        var cartItems = [];
+
+function addToCart(button) {
+    var product = button.parentNode;
+    var productName = product.querySelector("p:first-of-type").textContent;
+    var productPrice = product.querySelector("p:nth-of-type(2)").textContent;
+    cartItems.push({ name: productName, price: productPrice });
+    updateCart();
+}
+
+function removeFromCart(index) {
+    cartItems.splice(index, 1);
+    updateCart();
+}
+
+function updateCart() {
+    var cartContent = document.getElementById("cart-items");
+    cartContent.innerHTML = ""; 
+
+    var totalPrice = 0;
+    cartItems.forEach(function (item, index) {
+        var cartItem = document.createElement("div");
+        cartItem.classList.add("cart-item");
+
+        var itemName = document.createElement("p");
+        itemName.textContent = item.name;
+
+        var itemPrice = document.createElement("p");
+        itemPrice.textContent = item.price;
+
+        var removeButton = document.createElement("button");
+        removeButton.textContent = "حذف";
+       
+        removeButton.onclick = function () {
+            removeFromCart(index);
+        };
+
+        cartItem.appendChild(itemName);
+        cartItem.appendChild(itemPrice);
+        cartItem.appendChild(removeButton);
+
+        cartContent.appendChild(cartItem);
+
+        totalPrice += parseFloat(item.price.replace(/\D/g, ""));
+    });
+
+    var totalElement = document.createElement("p");
+    totalElement.textContent = "قیمت کل: " + totalPrice.toLocaleString() + " تومان";
+    cartContent.appendChild(totalElement);
+}
+var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("slide-item");
+        var dots = document.getElementsByClassName("slider-dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("slide-item");
+        var dots = document.getElementsByClassName("slider-dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        setTimeout(showSlides, 3000); 
+    }
+
+
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+const PORT = 3000;
+
+app.use(bodyParser.json());
+
+let shoppingCart = [];
+
+
+app.post('/add-to-cart', (req, res) => {
+    const product = req.body;
+    shoppingCart.push(product);
+    res.send('Product added to cart successfully!');
+});
+
+// شروع سرور
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
+
+    </script>
+    
+</body>
+
+</html>  
